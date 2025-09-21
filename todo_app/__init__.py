@@ -19,7 +19,8 @@ limiter = Limiter(
 def create_app():
     app = Flask(__name__)
     app.config.from_object("config")
-    app.config['JWT_SECRET_KEY'] = "2rhN8C0zgqX8xv-GRveWdzfekC9903e6GzycW1Ja"
+    load_dotenv(dotenv_path='todo_app/keys.env')
+    app.config['SECRET_KEY']=os.getenv("JWT_SECRET_KEY")
     app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(hours=3)  # 1 hour access tokens
     app.config['JWT_REFRESH_TOKEN_EXPIRES'] = timedelta(days=30)
     jwt = JWTManager(app)

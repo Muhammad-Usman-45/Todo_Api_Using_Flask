@@ -3,7 +3,7 @@ import certifi
 from dotenv import load_dotenv
 
 os.environ['SSL_CERT_FILE'] = certifi.where()
-load_dotenv(dotenv_path='todo_app/api_key.env')
+load_dotenv(dotenv_path='todo_app/keys.env')
 SENDGRID_API_KEY = os.getenv("SENDGRID_API_KEY")
 FROM_EMAIL = os.getenv("SENDGRID_FROM_EMAIL")
 

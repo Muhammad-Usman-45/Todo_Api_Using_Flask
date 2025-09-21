@@ -191,8 +191,12 @@ def get_completed_todos():
 
 @main.route("/password-reset-request",methods=['POST'])
 @limiter.limit('3 per hour')
+<<<<<<< HEAD
 @limiter.limit("30 per minute")
 @required_auth('admin','user')
+=======
+@limiter.limit("30 per minute")  # limit repeated completed fetches
+>>>>>>> 98507de (Clean up: remove env files from tracking and update gitignore)
 def reset_password_request():
     try:
         data = request.get_json()
@@ -217,9 +221,13 @@ def reset_password_request():
         return jsonify({'message':str(error)}),500
 
 @main.route("/password-reset",methods=['POST','PATCH'])
+<<<<<<< HEAD
 @limiter.limit('3 per hour')
 @limiter.limit("30 per minute")
 @required_auth('admin','user')
+=======
+@limiter.limit("30 per minute")  # limit repeated completed fetches
+>>>>>>> 98507de (Clean up: remove env files from tracking and update gitignore)
 def reset_password():
     try:
         data = request.get_json()
