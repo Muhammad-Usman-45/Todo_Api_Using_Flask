@@ -191,7 +191,9 @@ def get_completed_todos():
 
 @main.route("/password-reset-request",methods=['POST'])
 @limiter.limit('3 per hour')
-def reset_password():
+@limiter.limit("30 per minute")
+@required_auth('admin','user')
+def reset_password_request():
     try:
         data = request.get_json()
         if not data or "email" not in data:
@@ -215,7 +217,9 @@ def reset_password():
         return jsonify({'message':str(error)}),500
 
 @main.route("/password-reset",methods=['POST','PATCH'])
-
+@limiter.limit('3 per hour')
+@limiter.limit("30 per minute")
+@required_auth('admin','user')
 def reset_password():
     try:
         data = request.get_json()
